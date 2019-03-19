@@ -39,7 +39,7 @@ function addTodo(event) {
     document.getElementById('new-todo').value = "";
 
     // Put the todo and its "done-ness" in their respective arrays.
-    // todos.push(newTodo);
+    todos.push(newTodo);
     
 
     // Create a new html element and put our new todo's text in there.
@@ -54,6 +54,7 @@ function addTodo(event) {
     // Add an event listener on the newly created html element to launch
     // `toggleDone` when it's clicked.
 
+   list.addEventListener('click', toggleDone);
 
     // Put our new element on the list part of our page!
 
@@ -118,37 +119,20 @@ function toggleDone(event) {
     
     // Grab the HTML element that was clicked.
     // If you don't know, the event parameter has what you need... somewhere.
-
+    let strike = document.getElementById('li').style.fontStyle = 'italic';
 
     // Find the index of the array that this todo resides in. There are a couple
     // ways to do this, and I'm sure you'll figure one out!
-
+    strike.innerHTML = 
 
     // *IF* it's not done yet, apply strikethrough. Otherwise, take that
     // strikethrough away!
-
+    
 
     // Toggle the "done-ness" of the same todo, using the isDone array.
 
 // Create a "close" button and append it to each list item
-    let myNodelist = document.getElementsByTagName("LI");
-    let i;
-    for (i = 0; i < myNodelist.length; i++) {
-    let span = document.createElement("SPAN");
-    let txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    myNodelist[i].appendChild(span);
-}
-
-
-
-    const list = document.querySelector('ul');
-    list.addEventListener('click', function(ev) {
-      if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
-      }
-    }, false);
+    
 
 
 
