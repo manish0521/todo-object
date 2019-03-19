@@ -16,46 +16,63 @@ window.onload = init;
 // Set up all event listeners.
 function init() {
     // When they click the add todo button, run `addTodo`.
-
+    document.querySelector('#add-todo')
+        .addEventListener('click', addTodo);
         
     // When they click the clear done todos button, run `clearDoneTodos`.
-
-    
+    document.querySelector('#clear-done-todos')
+        .addEventListener('click', clearDoneTodos);
     // When they click the clear all todos button, run `clearAllTodos`.
-
+    document.querySelector('#clear-all-todos')
+        .addEventListener('click', clearAllTodos);
 }
 
 function addTodo(event) {
     // Stop page from reloading on button click.
-
+    event.preventDefault();
 
     // Get new todo from the new todo input field.
-
+    const newTodo = document.querySelector('#new-todo').value;
 
     // Clear the input field of all text.
-
+    
+    document.getElementById('new-todo').value = "";
 
     // Put the todo and its "done-ness" in their respective arrays.
-
+    // todos.push(newTodo);
+    
 
     // Create a new html element and put our new todo's text in there.
-
+    let list = document.createElement('li');
+    let t = document.createTextNode(newTodo);
+    list.appendChild(t);
     
+    
+
+
+
     // Add an event listener on the newly created html element to launch
     // `toggleDone` when it's clicked.
 
 
     // Put our new element on the list part of our page!
 
+    if (newTodo === '') {
+        alert("You must write something!");
+      } else {
+        document.getElementById('todo-list').appendChild(list);
+      }
+
 }
+
 
 
 function clearAllTodos(event) {
     // Stop page from reloading on button click.
-
+    event.preventDefault();
     
     // Remove all todos from BOTH arrays.
-
+    todos.length = 0;
     
     // Remove all todos from the html.
     // You'll have to write that function too, but we'll call it here:
@@ -64,7 +81,8 @@ function clearAllTodos(event) {
 
 function clearDoneTodos(event) {
     // Stop page from reloading on button click.
-
+    event.preventDefault();
+     
     /*
         Find which todos need to be removed and remove them from BOTH arrays.
         If you did it right when making them, you should be able to check the
@@ -112,13 +130,39 @@ function toggleDone(event) {
 
     // Toggle the "done-ness" of the same todo, using the isDone array.
 
+// Create a "close" button and append it to each list item
+    let myNodelist = document.getElementsByTagName("LI");
+    let i;
+    for (i = 0; i < myNodelist.length; i++) {
+    let span = document.createElement("SPAN");
+    let txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    myNodelist[i].appendChild(span);
+}
+
+
+
+    const list = document.querySelector('ul');
+    list.addEventListener('click', function(ev) {
+      if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+      }
+    }, false);
+
+
+
+
 }
 
 function removeAllChildrenOfOl() {
     // Grab the ol.
-
+    const ol = document.querySelector('#todo-list');
 
     // Remove all its children.
+    while(ol.hasChildNodes()) {
+        ol.removeChild(ol.firstChild);
+    }
     // The way I like to do that is to continue to remove children as long as
     // there are some to remove.
     // Look at the methods `.hasChildNodes` and `removeChild`.
